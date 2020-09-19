@@ -1,0 +1,50 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+using Newtonsoft.Json;
+
+public class SaveGame : MonoBehaviour{
+
+    private string savePath = @"C:\Users\dell\Documents\AngryBird";
+    private string saveFile = @"C:\Users\dell\Documents\AngryBird\save.json";
+    // 使用 JSON 存储
+    private string saveText = @"{}";
+
+    public void createFolder() {
+        if (Directory.Exists(savePath)) {
+            Directory.CreateDirectory(savePath);
+        }
+    }
+
+    public void createFile() {
+        createFolder();
+        if (File.Exists(saveFile)) {
+            File.Create(saveFile);
+        }
+    }
+
+    public void writeInitialConfig() {
+        saveText = @"{
+                ""Stars"" : ""0"",
+                ""Map1_Level1"" : ""0"",
+
+            }";
+    }
+
+    public JsonReader readFile() {
+        JsonReader reader = new JsonTextReader(new StringReader(saveText));
+
+        return reader;
+    }
+
+    public void changeFile() {
+
+    }
+
+    public void Action() {
+        createFile();
+
+    }
+
+}
